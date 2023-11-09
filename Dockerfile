@@ -2,6 +2,7 @@ FROM node:16-alpine3.17
 
 WORKDIR /app
 
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories 
 RUN apk add --no-cache \
     chromium \
     nss \
@@ -19,6 +20,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 
 COPY package*.json ./
 COPY local.conf /etc/fonts/local.conf
+COPY AlibabaPuHuiTi-3-55-Regular.ttf /usr/share/fonts/freefont/
 
 RUN npm ci
 
